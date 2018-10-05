@@ -8,4 +8,3 @@ On your project root:
 
 `yarn add react-native-tydligval`
 `rnpm link react-native-svg`
-`rnpm link react-native-blur`

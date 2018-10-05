@@ -2,7 +2,7 @@
 
 import React, { PureComponent, Fragment } from 'react';
 import { BlurView } from 'react-native-blur';
-import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import {
   Button,
   Text,
@@ -28,7 +28,9 @@ type Props = {
   triggerButton?: ?React.Element,
   selectButton?: ?React.Element,
   closeButton?: ?React.Element,
-  viewRef: any,
+  source: {
+    url: string,
+  },
 };
 
 type State = {
@@ -45,20 +47,23 @@ export default class ValPicker extends PureComponent<Props, State> {
     };
   }
 
-  triggerButton = () => (
-    <Button onPress={this.onPress}>
-      <TriggerContainer>
-        <TriggerLeft>
-          <Text>
-            {this.state.selectedItem ? this.state.selectedItem : this.props.items[0].label}
-          </Text>
-        </TriggerLeft>
-        <TriggerRight>
-          <ArrowDown />
-        </TriggerRight>
-      </TriggerContainer>
-    </Button>
-  );
+  triggerButton = (items, onPress) =>
+    this.props.triggerButton ? (
+      this.props.triggerButton(items, onPress, this.state.selectedItem)
+    ) : (
+      <Button onPress={this.onPress}>
+        <TriggerContainer>
+          <TriggerLeft>
+            <Text>
+              {this.state.selectedItem ? this.state.selectedItem : this.props.items[0].label}
+            </Text>
+          </TriggerLeft>
+          <TriggerRight>
+            <ArrowDown />
+          </TriggerRight>
+        </TriggerContainer>
+      </Button>
+    );
 
   selectButton = item => (
     <Button onPress={() => this.onSelect(item)} key={item.id}>
@@ -95,46 +100,46 @@ export default class ValPicker extends PureComponent<Props, State> {
   };
 
   render() {
-    const { items, viewRef } = this.props;
-    console.log(viewRef);
-    return items && !!items.length && !!viewRef ? (
+    const { items, source } = this.props;
+    return items && !!items.length ? (
       <Fragment>
-        {this.props.triggerButton
-          ? this.props.triggerButton(items, this.onPress, this.state.selectedItem)
-          : this.triggerButton()}
-        {this.state.isOverlayOn && (
-          <Fragment>
-            <BlurView
-              blurType="light"
-              blurAmount={10}
-              viewRef={viewRef}
-              style={{
-                position: 'absolute',
-                zIndex: 998,
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-              }}
-            />
-            <BlurredContainer style={StyleSheet.absoluteFill}>
-              <Scroller>
-                {items &&
-                  !!items.length &&
-                  items.map(
-                    item =>
-                      this.props.selectButton
-                        ? this.props.selectButton(item, this.onSelect)
-                        : this.selectButton(item),
-                  )}
-                <View key="bottomSpace" style={{ height: 10, paddingTop: 50 }} />
-              </Scroller>
-              <Close>
-                {this.props.closeButton ? this.props.closeButton(this.onClose) : this.closeButton()}
-              </Close>
-            </BlurredContainer>
-          </Fragment>
-        )}
+        {!this.state.isOverlayOn ? this.triggerButton(items, this.onPress) : null}
+        {this.state.isOverlayOn &&
+          source && (
+            <Fragment>
+              <Image
+                blurRadius={4}
+                resizeMode="cover"
+                source={source}
+                style={{
+                  position: 'absolute',
+                  zIndex: 999,
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                }}
+              />
+              <BlurredContainer style={StyleSheet.absoluteFill}>
+                <Scroller>
+                  {items &&
+                    !!items.length &&
+                    items.map(
+                      item =>
+                        this.props.selectButton
+                          ? this.props.selectButton(item, this.onSelect)
+                          : this.selectButton(item),
+                    )}
+                  <View key="bottomSpace" style={{ height: 10, paddingTop: 50 }} />
+                </Scroller>
+                <Close>
+                  {this.props.closeButton
+                    ? this.props.closeButton(this.onClose)
+                    : this.closeButton()}
+                </Close>
+              </BlurredContainer>
+            </Fragment>
+          )}
       </Fragment>
     ) : null;
   }
