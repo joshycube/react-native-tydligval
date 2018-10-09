@@ -1,7 +1,6 @@
 // @flow
 
 import React, { PureComponent, Fragment } from 'react';
-import { BlurView } from 'react-native-blur';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import {
   Button,
