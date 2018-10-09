@@ -1,0 +1,8 @@
+{
+  "presets": ["react-native"],
+  "env": {
+    "development": {
+      "plugins": ["babel-plugin-styled-components"]
+    }
+  }
+}

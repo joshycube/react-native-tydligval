@@ -8,6 +8,38 @@
     "test": "jest --coverage",
     "postinstall": "rnpm link react-native-svg"
   },
+  "jest": {
+    "verbose": true,
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.{js}"
+    ],
+    "moduleNameMapper": {
+      "styled-components": "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
+    },
+    "testPathIgnorePatterns": [
+      "/__mocks__/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/jest/",
+      "/__mocks__/"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
+  },
   "keywords": [
     "react-native",
     "picker",
@@ -22,12 +54,21 @@
     "rnpm": "^1.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-styled-components": "^1.8.0",
+    "babel-preset-react-native": "5.0.2",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0"
+    "jest": "^23.2.0",
+    "jest-react-native": "^18.0.0",
+    "jest-styled-components": "^6.2.1",
+    "react-native": "^0.57.2"
   },
   "dependencies": {
     "react-native-svg": "^6.3.1",
