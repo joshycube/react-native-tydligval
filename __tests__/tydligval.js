@@ -18,14 +18,14 @@ describe('tydligval', () => {
   ];
 
   describe('with default interface', () => {
-    test('component render with no data', () => {
+    test('render component with no data', () => {
       const shallow = new ShallowRenderer();
       shallow.render(<Picker />);
       const result = shallow.getRenderOutput();
       expect(result).toMatchSnapshot();
     });
 
-    test('component render with data', () => {
+    test('render component with data', () => {
       const shallow = new ShallowRenderer();
       shallow.render(
         <Picker
@@ -34,7 +34,7 @@ describe('tydligval', () => {
               'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
           }}
           key="picker-one"
-          onSelect={selected => this.onSelect(selected)}
+          onSelect={selected => onSelect(selected)}
           items={items}
         />,
       );

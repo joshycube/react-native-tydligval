@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`tydligval with default interface component render with data 1`] = `
+exports[`tydligval with default interface render component with data 1`] = `
 <React.Fragment>
   <style__Button
     onPress={[Function]}
@@ -19,4 +19,4 @@ exports[`tydligval with default interface component render with data 1`] = `
 </React.Fragment>
 `;
 
-exports[`tydligval with default interface component render with no data 1`] = `null`;
+exports[`tydligval with default interface render component with no data 1`] = `null`;
