@@ -20,3 +20,57 @@ exports[`tydligval with default interface render component with data 1`] = `
 `;
 
 exports[`tydligval with default interface render component with no data 1`] = `null`;
+
+exports[`tydligval with default interface renders the default trigger button 1`] = `
+<style__Button
+  onPress={[Function]}
+>
+  <style__TriggerContainer>
+    <style__TriggerLeft>
+      <style__Text>
+        Test 1
+      </style__Text>
+    </style__TriggerLeft>
+    <style__TriggerRight>
+      <ArrowDown />
+    </style__TriggerRight>
+  </style__TriggerContainer>
+</style__Button>
+`;
+
+exports[`tydligval with default interface renders the default trigger buttons 1`] = `
+<style__Button
+  onPress={[Function]}
+>
+  <style__TriggerContainer>
+    <style__TriggerLeft>
+      <style__Text>
+        Test 1
+      </style__Text>
+    </style__TriggerLeft>
+    <style__TriggerRight>
+      <ArrowDown />
+    </style__TriggerRight>
+  </style__TriggerContainer>
+</style__Button>
+`;
+
+exports[`tydligval with default interface renders the default trigger buttons 2`] = `
+<style__Button
+  onPress={[Function]}
+>
+  <style__Text>
+    Test 1
+  </style__Text>
+</style__Button>
+`;
+
+exports[`tydligval with default interface renders the default trigger buttons 3`] = `
+<style__CloseTrigger>
+  <style__Button
+    onPress={[Function]}
+  >
+    <CloseMe />
+  </style__Button>
+</style__CloseTrigger>
+`;

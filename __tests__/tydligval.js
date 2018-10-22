@@ -41,5 +41,104 @@ describe('tydligval', () => {
       const result = shallow.getRenderOutput();
       expect(result).toMatchSnapshot();
     });
+
+    test('renders the default trigger buttons', () => {
+      const shallow = new ShallowRenderer();
+      const onPress = jest.fn();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />,
+      );
+      const trigger = shallow._instance.triggerButton(items, onPress);
+      const select = shallow._instance.selectButton(items[0]);
+      const close = shallow._instance.closeButton(items[0]);
+      expect(trigger).toMatchSnapshot();
+      expect(select).toMatchSnapshot();
+      expect(close).toMatchSnapshot();
+    });
+
+    test('triggers the overlay', () => {
+      const shallow = new ShallowRenderer();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />,
+      );
+      shallow._instance.onPress();
+      expect(shallow._instance.state.isOverlayOn).toEqual(true);
+    });
+
+    test('removes the overlay', () => {
+      const shallow = new ShallowRenderer();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />,
+      );
+      shallow._instance.onClose();
+      expect(shallow._instance.state.isOverlayOn).toEqual(false);
+    });
+
+    test('triggers the onSelect', () => {
+      const shallow = new ShallowRenderer();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />,
+      );
+      shallow._instance.onSelect(items[1]);
+      expect(onSelect).toBeCalled();
+      expect(shallow._instance.state.isOverlayOn).toEqual(false);
+      expect(shallow._instance.state.selectedItem).toEqual(items[1].label);
+    });
+
+    test('triggers the onSelect by using the button', () => {
+      const shallow = new ShallowRenderer();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              'https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg',
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />,
+      );
+      const Button = shallow._instance.selectButton(items[0]);
+
+      const shallow0 = new ShallowRenderer();
+      shallow0.render(Button);
+      const result = shallow0.getRenderOutput();
+
+      result.props.onPress();
+
+      expect(onSelect).toBeCalledWith(items[0]);
+    });
   });
 });
