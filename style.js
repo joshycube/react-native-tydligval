@@ -1,6 +1,7 @@
 // @flow
 
-import styled from 'styled-components';
+/* istanbul ignore next */
+import styled from "styled-components";
 
 export const Button = styled.TouchableOpacity`
   padding-top: 5;

@@ -6,16 +6,20 @@
   "scripts": {
     "lint": "yarn eslint **.js",
     "test": "yarn lint && jest --coverage",
+    "flow": "flow",
     "postinstall": "rnpm link react-native-svg"
   },
   "jest": {
     "verbose": true,
     "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-router-native)"
+    ],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "testMatch": [
-      "<rootDir>/__tests__/**/*.{js}"
+      "<rootDir>/__tests__/**/*.{js,jsx,mjs}"
     ],
     "moduleNameMapper": {
       "styled-components": "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
@@ -26,7 +30,8 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/jest/",
-      "/__mocks__/"
+      "/__mocks__/",
+      "/svg/"
     ],
     "collectCoverageFrom": [
       "<rootDir>/*.js"
@@ -56,15 +61,22 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "23.6.0",
+    "babel-plugin-styled-components": "^1.8.0",
     "babel-preset-react-native": "5.0.2",
     "babel-preset-react-native-stage-0": "^1.0.1",
-    "babel-plugin-styled-components": "^1.8.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.12.2",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.2.0",
+    "flow-bin": "^0.81.0",
+    "flow-typed": "^2.3.0",
+    "jest": "^23.6.0",
     "jest-react-native": "^18.0.0",
     "jest-styled-components": "^6.2.1",
     "react": "^16.5.2",

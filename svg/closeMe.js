@@ -1,8 +1,11 @@
 // @flow
 
-import React from 'react';
-import Svg, { G, Path } from 'react-native-svg';
+import React from "react";
+import Svg, { G, Path } from "react-native-svg";
 
+/**
+ *
+ */
 const CloseMe = () => (
   <Svg height="25" width="25">
     <G>

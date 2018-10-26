@@ -1,3 +1,93 @@
 {
-    "extends": "airbnb"
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "flowtype/require-valid-file-annotation": ["warn", "always"],
+    "func-names": "off",
+    "no-warning-comments": ["error", { "location": "anywhere" }],
+    "comma-dangle": [
+      2,
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "ignore"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "valid-jsdoc": "warn",
+    "require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": true
+        }
+      }
+    ],
+    "max-lines": [
+      "error",
+      {
+        "max": 150,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "class-methods-use-this": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"]
+      }
+    ],
+    "react/no-children-prop": 0,
+    "react/no-danger": 0,
+    "react/default-props-match-prop-types": [
+      "error",
+      { "allowRequiredDefaults": true }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["./src", "node_modules"],
+        "extensions": [".js", ".jsx", ".ios.js", ".android.js"]
+      }
+    }
+  },
+  "parser": "babel-eslint",
+  "plugins": ["jest", "flowtype"],
+  "env": {
+    "jest/globals": true,
+    "browser": true
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "overrides": [
+    {
+      "files": ["**/__mocks__/**/*", "**/__tests__/**/*", "**/*.test.*"],
+      "rules": {
+        "flowtype/require-valid-file-annotation": ["off"],
+        "require-jsdoc": ["off"],
+        "max-lines": ["off"],
+        "no-underscore-dangle": ["off"]
+      }
+    }
+  ]
 }

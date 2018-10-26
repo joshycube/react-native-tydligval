@@ -1,8 +1,11 @@
 // @flow
 
-import React from 'react';
-import Svg, { G, Polygon } from 'react-native-svg';
+import React from "react";
+import Svg, { G, Polygon } from "react-native-svg";
 
+/**
+ *
+ */
 const ArrowDown = () => (
   <Svg height="10" width="10">
     <G stroke="none" strokeWidth="1" fill="#ffffff" fillRule="evenodd">

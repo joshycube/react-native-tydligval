@@ -1,7 +1,7 @@
 // @flow
 
-import React, { PureComponent, Fragment } from 'react';
-import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import * as React from "react";
+import { StyleSheet, View, Image } from "react-native";
 import {
   Button,
   Text,
@@ -12,11 +12,14 @@ import {
   CloseTrigger,
   BlurredContainer,
   Close,
-} from './style';
-import CloseMe from './closeMe';
-import ArrowDown from './arrowDown';
+} from "./style";
+/* istanbul ignore next */
+import CloseMe from "./svg/closeMe";
+/* istanbul ignore next */
+import ArrowDown from "./svg/arrowDown";
 
 type Item = {
+  id?: ?string,
   label: string,
   value: ?string,
 };
@@ -24,21 +27,38 @@ type Item = {
 type Props = {
   items: Array<Item>,
   onSelect: (item: Item) => void,
-  triggerButton?: ?React.Element,
-  selectButton?: ?React.Element,
-  closeButton?: ?React.Element,
+  triggerButton?: (
+    items: Array<Item>,
+    onPress: Function,
+    selectedItem: ?Item
+  ) => React.Element<*>,
+  selectButton?: (item: Item, onSelect: Function) => ?React.Element<*>,
+  closeButton?: (onClose: Function) => ?React.Element<*>,
   source: {
     url: string,
   },
 };
 
 type State = {
-  selectedItem: Item,
+  selectedItem: ?Item,
   isOverlayOn: boolean,
 };
 
-export default class ValPicker extends PureComponent<Props, State> {
-  constructor(props) {
+/**
+ *
+ */
+class ValPicker extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    triggerButton: null,
+    selectButton: null,
+    closeButton: null,
+  };
+
+  /**
+   *
+   * @param {*} props
+   */
+  constructor(props: Props) {
     super(props);
     this.state = {
       selectedItem: undefined,
@@ -46,16 +66,19 @@ export default class ValPicker extends PureComponent<Props, State> {
     };
   }
 
-  triggerButton = (items, onPress) =>
-    this.props.triggerButton ? (
-      this.props.triggerButton(items, onPress, this.state.selectedItem)
+  /**
+   *
+   */
+  triggerButton = (items: Array<Item>, onPress: Function) => {
+    const { triggerButton } = this.props;
+    const { selectedItem } = this.state;
+    return triggerButton ? (
+      triggerButton(items, onPress, selectedItem)
     ) : (
       <Button onPress={this.onPress}>
         <TriggerContainer>
           <TriggerLeft>
-            <Text>
-              {this.state.selectedItem ? this.state.selectedItem : this.props.items[0].label}
-            </Text>
+            <Text>{selectedItem ? selectedItem.label : items[0].label}</Text>
           </TriggerLeft>
           <TriggerRight>
             <ArrowDown />
@@ -63,13 +86,20 @@ export default class ValPicker extends PureComponent<Props, State> {
         </TriggerContainer>
       </Button>
     );
+  };
 
-  selectButton = item => (
+  /**
+   *
+   */
+  selectButton = (item: Item) => (
     <Button onPress={() => this.onSelect(item)} key={item.id}>
       <Text>{item.label}</Text>
     </Button>
   );
 
+  /**
+   *
+   */
   closeButton = () => (
     <CloseTrigger>
       <Button onPress={this.onClose}>
@@ -84,12 +114,13 @@ export default class ValPicker extends PureComponent<Props, State> {
     });
   };
 
-  onSelect = item => {
+  onSelect = (item: Item) => {
+    const { onSelect } = this.props;
     this.setState({
       isOverlayOn: false,
-      selectedItem: item.label,
+      selectedItem: item,
     });
-    this.props.onSelect(item);
+    onSelect(item);
   };
 
   onClose = () => {
@@ -98,20 +129,24 @@ export default class ValPicker extends PureComponent<Props, State> {
     });
   };
 
+  /**
+   *
+   */
   render() {
-    const { items, source } = this.props;
+    const { items, source, closeButton, selectButton } = this.props;
+    const { isOverlayOn } = this.state;
     return items && !!items.length ? (
-      <Fragment>
-        {!this.state.isOverlayOn ? this.triggerButton(items, this.onPress) : null}
-        {this.state.isOverlayOn &&
+      <React.Fragment>
+        {!isOverlayOn ? this.triggerButton(items, this.onPress) : null}
+        {isOverlayOn &&
           source && (
-            <Fragment>
+            <React.Fragment>
               <Image
                 blurRadius={4}
                 resizeMode="cover"
                 source={source}
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   zIndex: 999,
                   top: 0,
                   left: 0,
@@ -125,21 +160,24 @@ export default class ValPicker extends PureComponent<Props, State> {
                     !!items.length &&
                     items.map(
                       item =>
-                        this.props.selectButton
-                          ? this.props.selectButton(item, this.onSelect)
-                          : this.selectButton(item),
+                        selectButton
+                          ? selectButton(item, this.onSelect)
+                          : this.selectButton(item)
                     )}
-                  <View key="bottomSpace" style={{ height: 10, paddingTop: 50 }} />
+                  <View
+                    key="bottomSpace"
+                    style={{ height: 10, paddingTop: 50 }}
+                  />
                 </Scroller>
                 <Close>
-                  {this.props.closeButton
-                    ? this.props.closeButton(this.onClose)
-                    : this.closeButton()}
+                  {closeButton ? closeButton(this.onClose) : this.closeButton()}
                 </Close>
               </BlurredContainer>
-            </Fragment>
+            </React.Fragment>
           )}
-      </Fragment>
+      </React.Fragment>
     ) : null;
   }
 }
+
+export default ValPicker;

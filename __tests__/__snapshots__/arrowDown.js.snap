@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`arrowDown renders the SVG correctly 1`] = `
+<Svg
+  height="10"
+  preserveAspectRatio="xMidYMid meet"
+  width="10"
+>
+  <G
+    fill="#ffffff"
+    fillRule="evenodd"
+    stroke="none"
+    strokeWidth="1"
+  >
+    <G
+      fill="#ffffff"
+      transform="translate(-997.000000, -572.000000)"
+    >
+      <G
+        transform="translate(997.000000, 572.000000)"
+      >
+        <Polygon
+          points="0 0 5.21196348 6.21196348 10.9042969 0"
+        />
+      </G>
+    </G>
+  </G>
+</Svg>
+`;
