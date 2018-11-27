@@ -64,6 +64,29 @@ describe("tydligval", () => {
       expect(close).toMatchSnapshot();
     });
 
+    test("renders the arrow with trigger buttons", () => {
+      const shallow = new ShallowRenderer();
+      shallow.render(
+        <Picker
+          source={{
+            uri:
+              "https://img.freepik.com/free-vector/technology-background-with-gradient-colors_23-2147837710.jpg?size=338c&ext=jpg",
+          }}
+          key="picker-one"
+          onSelect={selected => onSelect(selected)}
+          items={items}
+        />
+      );
+      const result = shallow.getRenderOutput();
+      const arrowDown =
+        result.props.children[0].props.children.props.children[1].props
+          .children;
+      const shallow0 = new ShallowRenderer();
+      shallow0.render(arrowDown);
+      const result0 = shallow0.getRenderOutput();
+      expect(result0).toMatchSnapshot();
+    });
+
     test("triggers the overlay", () => {
       const shallow = new ShallowRenderer();
       shallow.render(

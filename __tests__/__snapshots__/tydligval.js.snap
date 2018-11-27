@@ -23,6 +23,34 @@ exports[`tydligval with default interface render component with data 1`] = `
 
 exports[`tydligval with default interface render component with no data 1`] = `null`;
 
+exports[`tydligval with default interface renders the arrow with trigger buttons 1`] = `
+<Svg
+  height="10"
+  preserveAspectRatio="xMidYMid meet"
+  width="10"
+>
+  <G
+    fill="#ffffff"
+    fillRule="evenodd"
+    stroke="none"
+    strokeWidth="1"
+  >
+    <G
+      fill="#ffffff"
+      transform="translate(-997.000000, -572.000000)"
+    >
+      <G
+        transform="translate(997.000000, 572.000000)"
+      >
+        <Polygon
+          points="0 0 5.21196348 6.21196348 10.9042969 0"
+        />
+      </G>
+    </G>
+  </G>
+</Svg>
+`;
+
 exports[`tydligval with default interface renders the default trigger buttons 1`] = `
 <style__Button
   onPress={[Function]}

@@ -45,9 +45,9 @@ type State = {
 };
 
 /**
- *
+ * The main class for the picker
  */
-class ValPicker extends React.PureComponent<Props, State> {
+class Tydligval extends React.PureComponent<Props, State> {
   static defaultProps = {
     triggerButton: null,
     selectButton: null,
@@ -55,8 +55,8 @@ class ValPicker extends React.PureComponent<Props, State> {
   };
 
   /**
-   *
-   * @param {*} props
+   * Constructor setting up the initial state
+   * @param {Object} props The passed props
    */
   constructor(props: Props) {
     super(props);
@@ -67,7 +67,10 @@ class ValPicker extends React.PureComponent<Props, State> {
   }
 
   /**
-   *
+   * Return a custom or the default trigger button
+   * @param {Array} items The items to show
+   * @param {Function} onPress The callback
+   * @returns {ReactElement} The element to render
    */
   triggerButton = (items: Array<Item>, onPress: Function) => {
     const { triggerButton } = this.props;
@@ -89,7 +92,9 @@ class ValPicker extends React.PureComponent<Props, State> {
   };
 
   /**
-   *
+   * Return the select button
+   * @param {Object} item The item to select
+   * @returns {ReactElement} The element to render
    */
   selectButton = (item: Item) => (
     <Button onPress={() => this.onSelect(item)} key={item.id}>
@@ -98,7 +103,8 @@ class ValPicker extends React.PureComponent<Props, State> {
   );
 
   /**
-   *
+   * Return the close button
+   * @returns {ReactElement} The element to render
    */
   closeButton = () => (
     <CloseTrigger>
@@ -108,12 +114,21 @@ class ValPicker extends React.PureComponent<Props, State> {
     </CloseTrigger>
   );
 
+  /**
+   * Change the state onPress
+   * @returns {Void} No return
+   */
   onPress = () => {
     this.setState({
       isOverlayOn: true,
     });
   };
 
+  /**
+   * Change the state onSelect
+   * @param {Object} item The selected item
+   * @returns {Void} No return
+   */
   onSelect = (item: Item) => {
     const { onSelect } = this.props;
     this.setState({
@@ -123,6 +138,10 @@ class ValPicker extends React.PureComponent<Props, State> {
     onSelect(item);
   };
 
+  /**
+   * Change the state onClose
+   * @returns {Void} No return
+   */
   onClose = () => {
     this.setState({
       isOverlayOn: false,
@@ -130,7 +149,8 @@ class ValPicker extends React.PureComponent<Props, State> {
   };
 
   /**
-   *
+   * Render the component
+   * @return {ReactNode} The markup to render
    */
   render() {
     const { items, source, closeButton, selectButton } = this.props;
@@ -138,46 +158,44 @@ class ValPicker extends React.PureComponent<Props, State> {
     return items && !!items.length ? (
       <React.Fragment>
         {!isOverlayOn ? this.triggerButton(items, this.onPress) : null}
-        {isOverlayOn &&
-          source && (
-            <React.Fragment>
-              <Image
-                blurRadius={4}
-                resizeMode="cover"
-                source={source}
-                style={{
-                  position: "absolute",
-                  zIndex: 999,
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: 0,
-                }}
-              />
-              <BlurredContainer style={StyleSheet.absoluteFill}>
-                <Scroller>
-                  {items &&
-                    !!items.length &&
-                    items.map(
-                      item =>
-                        selectButton
-                          ? selectButton(item, this.onSelect)
-                          : this.selectButton(item)
-                    )}
-                  <View
-                    key="bottomSpace"
-                    style={{ height: 10, paddingTop: 50 }}
-                  />
-                </Scroller>
-                <Close>
-                  {closeButton ? closeButton(this.onClose) : this.closeButton()}
-                </Close>
-              </BlurredContainer>
-            </React.Fragment>
-          )}
+        {isOverlayOn && source && (
+          <React.Fragment>
+            <Image
+              blurRadius={4}
+              resizeMode="cover"
+              source={source}
+              style={{
+                position: "absolute",
+                zIndex: 999,
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+              }}
+            />
+            <BlurredContainer style={StyleSheet.absoluteFill}>
+              <Scroller>
+                {items &&
+                  !!items.length &&
+                  items.map(item =>
+                    selectButton
+                      ? selectButton(item, this.onSelect)
+                      : this.selectButton(item)
+                  )}
+                <View
+                  key="bottomSpace"
+                  style={{ height: 10, paddingTop: 50 }}
+                />
+              </Scroller>
+              <Close>
+                {closeButton ? closeButton(this.onClose) : this.closeButton()}
+              </Close>
+            </BlurredContainer>
+          </React.Fragment>
+        )}
       </React.Fragment>
     ) : null;
   }
 }
 
-export default ValPicker;
+export default Tydligval;
