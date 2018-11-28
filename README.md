@@ -7,4 +7,3 @@ A react native picker library
 On your project root:
 
 `yarn add react-native-tydligval`
-`rnpm link react-native-svg`
