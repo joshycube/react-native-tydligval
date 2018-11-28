@@ -1,13 +1,12 @@
 {
   "name": "react-native-tydligval",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A react native picker library",
   "main": "./tydligval.js",
   "scripts": {
     "lint": "yarn eslint **.js",
     "test": "yarn lint && jest --coverage",
-    "flow": "flow",
-    "postinstall": "rnpm link react-native-svg"
+    "flow": "flow"
   },
   "jest": {
     "verbose": true,
