@@ -3,6 +3,13 @@
 /* istanbul ignore next */
 import styled from "styled-components";
 
+/**
+ * Return the color from props otherwhise white
+ * @param {String} color The font color from props
+ * @return {String} Return the color
+ */
+const setTextColor = ({ color }) => color || "#ffffff";
+
 export const Button = styled.TouchableOpacity`
   padding-top: 5;
   padding-bottom: 5;
@@ -11,9 +18,9 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const Text = styled.Text`
-  color: #ffffff;
   font-weight: bold;
   text-align: center;
+  color: ${setTextColor};
 `;
 
 export const BlurredContainer = styled.View`

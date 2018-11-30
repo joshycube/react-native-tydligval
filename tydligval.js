@@ -37,6 +37,7 @@ type Props = {
   source: {
     url: string,
   },
+  color?: string,
 };
 
 type State = {
@@ -73,7 +74,7 @@ class Tydligval extends React.PureComponent<Props, State> {
    * @returns {ReactElement} The element to render
    */
   triggerButton = (items: Array<Item>, onPress: Function) => {
-    const { triggerButton } = this.props;
+    const { triggerButton, color } = this.props;
     const { selectedItem } = this.state;
     return triggerButton ? (
       triggerButton(items, onPress, selectedItem)
@@ -81,10 +82,12 @@ class Tydligval extends React.PureComponent<Props, State> {
       <Button onPress={this.onPress}>
         <TriggerContainer>
           <TriggerLeft>
-            <Text>{selectedItem ? selectedItem.label : items[0].label}</Text>
+            <Text color={color}>
+              {selectedItem ? selectedItem.label : items[0].label}
+            </Text>
           </TriggerLeft>
           <TriggerRight>
-            <ArrowDown />
+            <ArrowDown color={color} />
           </TriggerRight>
         </TriggerContainer>
       </Button>
@@ -96,23 +99,29 @@ class Tydligval extends React.PureComponent<Props, State> {
    * @param {Object} item The item to select
    * @returns {ReactElement} The element to render
    */
-  selectButton = (item: Item) => (
-    <Button onPress={() => this.onSelect(item)} key={item.id}>
-      <Text>{item.label}</Text>
-    </Button>
-  );
+  selectButton = (item: Item) => {
+    const { color } = this.props;
+    return (
+      <Button onPress={() => this.onSelect(item)} key={item.id}>
+        <Text color={color}>{item.label}</Text>
+      </Button>
+    );
+  };
 
   /**
    * Return the close button
    * @returns {ReactElement} The element to render
    */
-  closeButton = () => (
-    <CloseTrigger>
-      <Button onPress={this.onClose}>
-        <CloseMe />
-      </Button>
-    </CloseTrigger>
-  );
+  closeButton = () => {
+    const { color } = this.props;
+    return (
+      <CloseTrigger>
+        <Button onPress={this.onClose}>
+          <CloseMe color={color} />
+        </Button>
+      </CloseTrigger>
+    );
+  };
 
   /**
    * Change the state onPress
@@ -197,5 +206,9 @@ class Tydligval extends React.PureComponent<Props, State> {
     ) : null;
   }
 }
+
+Tydligval.defaultProps = {
+  color: "#ffffff",
+};
 
 export default Tydligval;

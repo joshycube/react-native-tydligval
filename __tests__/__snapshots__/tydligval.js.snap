@@ -9,12 +9,16 @@ exports[`tydligval with default interface render component with data 1`] = `
   >
     <style__TriggerContainer>
       <style__TriggerLeft>
-        <style__Text>
+        <style__Text
+          color="#ffffff"
+        >
           Test 1
         </style__Text>
       </style__TriggerLeft>
       <style__TriggerRight>
-        <ArrowDown />
+        <ArrowDown
+          color="#ffffff"
+        />
       </style__TriggerRight>
     </style__TriggerContainer>
   </style__Button>
@@ -57,12 +61,16 @@ exports[`tydligval with default interface renders the default trigger buttons 1`
 >
   <style__TriggerContainer>
     <style__TriggerLeft>
-      <style__Text>
+      <style__Text
+        color="#ffffff"
+      >
         Test 1
       </style__Text>
     </style__TriggerLeft>
     <style__TriggerRight>
-      <ArrowDown />
+      <ArrowDown
+        color="#ffffff"
+      />
     </style__TriggerRight>
   </style__TriggerContainer>
 </style__Button>
@@ -72,7 +80,9 @@ exports[`tydligval with default interface renders the default trigger buttons 2`
 <style__Button
   onPress={[Function]}
 >
-  <style__Text>
+  <style__Text
+    color="#ffffff"
+  >
     Test 1
   </style__Text>
 </style__Button>
@@ -83,7 +93,9 @@ exports[`tydligval with default interface renders the default trigger buttons 3`
   <style__Button
     onPress={[Function]}
   >
-    <CloseMe />
+    <CloseMe
+      color="#ffffff"
+    />
   </style__Button>
 </style__CloseTrigger>
 `;
