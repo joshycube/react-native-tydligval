@@ -2,7 +2,7 @@
 
 Another React Native picker library with blurry background
 
-# usage
+## usage
 
 On your project root:
 
@@ -22,14 +22,14 @@ On your project root:
 - selectButton (Function) Callback that receives `item` `onSelect` and should return your custom select button which is the list item itself {ReactElement}
 - closeButton (Function) Callback that receives `onClose` and should return your custom close button and also call the onClose() event {ReactElement}
 
-# React Native example app
+## React Native example app
 
 https://github.com/joshycube/react-native-tydligval-example-app
 
 ### screenshots
 
-[[https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_1.png]]
-[[https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_2.png]]
-[[https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_1.png]]
-[[https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_2.png]]
-[[https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_and_ios.png]]
+![iphone example 1](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_1.png)
+![iphone example 2](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_2.png)
+![android example 1](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_1.png)
+![android example 2](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_2.png)
+![iphone and android](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_and_ios.png)
