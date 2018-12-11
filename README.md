@@ -32,7 +32,7 @@ https://github.com/joshycube/react-native-tydligval-example-app
 
 ### screenshots
 
-![iphone example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_1.png)
-![iphone example 2](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_2.png)
-![android example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_1.png)
-![android example 2](hhttps://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_2.png)
+![iphone example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/HEAD/screenshots/ios_example_1.png)
+![iphone example 2](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/HEAD/screenshots/ios_example_2.png)
+![android example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/HEAD/screenshots/android_example_1.png)
+![android example 2](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/HEAD/screenshots/android_example_2.png)
