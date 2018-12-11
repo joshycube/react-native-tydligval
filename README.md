@@ -22,13 +22,17 @@ On your project root:
 - selectButton (Function) Callback that receives `item` `onSelect` and should return your custom select button which is the list item itself {ReactElement}
 - closeButton (Function) Callback that receives `onClose` and should return your custom close button and also call the onClose() event {ReactElement}
 
+## This repo
+
+https://github.com/joshycube/react-native-tydligval.git
+
 ## React Native example app
 
 https://github.com/joshycube/react-native-tydligval-example-app
 
 ### screenshots
 
-![iphone example 1](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_1.png)
-![iphone example 2](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_2.png)
-![android example 1](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_1.png)
-![android example 2](https://github.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_2.png)
+![iphone example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_1.png)
+![iphone example 2](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/ios_example_2.png)
+![android example 1](https://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_1.png)
+![android example 2](hhttps://raw.githubusercontent.com/joshycube/react-native-tydligval-example-app/blob/master/screenshots/android_example_2.png)
